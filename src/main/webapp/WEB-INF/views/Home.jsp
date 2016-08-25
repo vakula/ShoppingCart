@@ -90,12 +90,12 @@
       </div>
     
       <div class="item">
-        <img src="/resources/images/3.jpg" alt="Chania" width="600" height="500"/> 
+        <img src="resources/images/3.jpg" alt="Chania" width="600" height="500"/> 
       </div>
       
       
        <div class="item">
-         <img src="/resources/images/4.jpg" alt="Chania" width="600" height="500"/>
+         <img src="resources/images/4.jpg" alt="Chania" width="600" height="500"/>
       </div>
       
           <!-- Left and right controls -->
@@ -116,17 +116,17 @@
     <div class="col-sm-4">
       
           
-         <img src="/resources/images/5.jpg" alt="Pulpit Rock" style="width:300px;height:150px"/>
+         <img src="resources/images/5.jpg" alt="Pulpit Rock" style="width:300px;height:150px"/>
          <a href="search?pro=chair" >fastrack</a>
     </div>
     <div class="col-sm-4">
            
-         <img src="/resources/images/6.jpg" alt="Moustiers Sainte Marie" style="width:300px;height:150px"/>
+         <img src="resources/images/6.jpg" alt="Moustiers Sainte Marie" style="width:300px;height:150px"/>
           <a href="search?pro=chair" >gmjehfm</a>
     </div>
     <div class="col-sm-4">
       <a href="enter pro?data=table">
-           <img src="/resources/images/7.jpg" alt="Cinque Terre" style="width:300px;height:150px"/>
+           <img src="resources/images/7.jpg" alt="Cinque Terre" style="width:300px;height:150px"/>
             <a href="search?pro=chair" >,eh,kger,k</a>
       </a>
     </div>

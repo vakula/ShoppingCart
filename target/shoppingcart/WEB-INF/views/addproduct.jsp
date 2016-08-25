@@ -28,8 +28,8 @@
   </div>
 </nav>
     <div class="container" ng-app="imgApp" ng-controller="imgCtrl">
-    <c:url var="addwatch" value="addwatch"></c:url>
-   <form:form commandName="Product" method="post" action="storewatch" enctype="multipart/form-data">
+    <c:url var="addproduct" value="addproduct"></c:url>
+   <form:form commandName="Product" method="post" action="storeproduct" enctype="multipart/form-data">
        <table class="table table-bordered" >
       
        <tr><td><form:label path="id">id :</form:label></td>
@@ -45,10 +45,18 @@
                <td><form:input path="description"/>
                <font color="red"><form:errors path="description"></form:errors></font></td>
            </tr> 
+                <tr><td><form:label path="warranty">Warranty :</form:label></td>
+               <td><form:input path="warranty"/>
+               <font color="red"><form:errors path="warranty"></form:errors></font></td>
+           </tr>   
            <tr><td><form:label path="price">price :</form:label></td>
                <td><form:input path="price"/>
                <font color="red"><form:errors path="price"></form:errors></font></td>
            </tr> 
+            <tr><td><form:label path="img">Product Image :</form:label></td>
+               <td><form:input path="img" type="file"/>
+               <font color="red"><form:errors path="img"></form:errors></font></td>
+           </tr>
        </table>
    </form:form> 
    

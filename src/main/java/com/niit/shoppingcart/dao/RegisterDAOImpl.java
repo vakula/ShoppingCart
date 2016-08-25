@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.shoppingcart.model.Register;
 
 
-@Repository("userdetailsDAO")
+@Repository("registerDAO")
 public class RegisterDAOImpl implements RegisterDAO 
 {
 

@@ -9,7 +9,7 @@ public interface RegisterDAO {
 		
 		public Register get(int id);
 		
-		public void saveOrUpdate(Register user);
+		public void saveOrUpdate(Register register);
 		
 		public void delete(int id);
 		public List<Register> listRegister();

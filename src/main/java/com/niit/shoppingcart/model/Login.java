@@ -62,6 +62,10 @@ public class Login {
 		// TODO Auto-generated method stub
 		
 	}
+	public Login get(int id2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

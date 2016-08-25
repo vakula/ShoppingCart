@@ -42,6 +42,7 @@ public class HomeController
 {
 @Autowired
 ProductDAO productDAO;
+private ProductDAO pd;
 @Autowired
 RegisterDAO rs;
 @Autowired
@@ -106,20 +107,31 @@ public String display10()
 {
 	return "Home";
 }
-/*@RequestMapping("/storewatch")
+@RequestMapping("/addproduct")
+public ModelAndView display11()
+{
+ModelAndView m5=new ModelAndView("addproduct");
+return m5;
+}
+@ModelAttribute("Product")
+   public Product createProduct()
+   {
+   	return new Product();
+   }
+@RequestMapping("/storeproduct")
 public String addChairs(HttpServletRequest request,@Valid @ModelAttribute("Product")Product product,BindingResult result)
        {
 System.out.println("hello niit...........................");
     	if(result.hasErrors())
     	{
-    		return "addwatch";
+    		return "addproduct";
     	}
     	String filename=product.getImage();
     	product.setImage(filename);
     	
     	try{
     		byte[] bytes=new byte[product.getImg().getInputStream().available()];
-    	}
+    	
     		product.getImg().getInputStream().read(bytes);
     		BufferedInputStream buffer=new BufferedInputStream(product.getImg().getInputStream());
     		MultipartFile file=product.getImg();
@@ -136,26 +148,31 @@ System.out.println("hello niit...........................");
     		System.out.println(e.getMessage());
     	}
     	productDAO.saveOrUpdate(product);
-    	return "ViewAll";
-    	return "retrive";
-    }*/
+    	return "display";
+    	
+    }
+@RequestMapping(value="editproduct",method=RequestMethod.GET)
+public ModelAndView editproduct(@RequestParam int id){
+ System.out.println("hello niit.........................niit1............");	
+ Product product1=pd.get(id);
+ System.out.println("hello niit.........................niit2............");
+ System.out.println("eeee "+product1.getName());
+	return new ModelAndView("editproduct","Product",product1);
+}
 @ModelAttribute("Register")
 public Register createuser(){
 		return new Register();
 }
 
 @RequestMapping(value = "/storeuser", method = RequestMethod.POST)
-public String addUser(@Valid @ModelAttribute("User")Login login,@Valid @ModelAttribute("UserDetails")Register register,BindingResult result, Model model){
+public String addUser(@Valid @ModelAttribute("Login")Login login,@Valid @ModelAttribute("Register")Register register,BindingResult result, Model model){
    	
-	if(result.hasErrors()) {
-		
-		return "register";
-	}
-	
+
 	System.out.println("hello storeUser");
 	System.out.println(register.getUsername()+ "hello @@@@@@");
+	rs.saveOrUpdate(register);
 	ld.save(login);
-	ld.Update(login);
+	
 	login.setId(register.getId());
 	login.setStatus(register.isStatus());
 	
@@ -199,18 +216,18 @@ public ModelAndView updateuser(HttpServletRequest request, @Valid @ModelAttribut
  
 
 
-/*@RequestMapping(value = "/list2", method = RequestMethod.GET, produces = "application/json")
+@RequestMapping(value = "/list2", method = RequestMethod.GET, produces = "application/json")
 public @ResponseBody String showList2() {
-	List list = ld.getAllLogin();
+	List list = ld.list();
 	Gson u = new Gson();
 	String json = u.toJson(list);
 	return json;
 }
 @RequestMapping(value="EditUser", method=RequestMethod.GET)
 public ModelAndView edituser(@RequestParam int id){
- System.out.println("hello .........................vishnu............");	
+ System.out.println("hello .........................vakula............");	
  Login u1=ld.get(id);
- System.out.println("hello.........................reddy............");
+ System.out.println("hello.........................devi............");
  
 	return new ModelAndView("EditUser","Login",u1);
 }
@@ -223,7 +240,27 @@ public ModelAndView deleteuser(@RequestParam int id)
     rs.delete(id);
 	ModelAndView model2=new ModelAndView("RetrieveUser");
 	return model2;
-}*/
+}
+@RequestMapping("/delete")
+public ModelAndView deleteChair(@RequestParam int id)
+{
+ System.out.println("hello welcome to niit");
+    pd.delete(id);
+	ModelAndView model=new ModelAndView("display");
+	return model;
+}
+@RequestMapping("/display")
+public ModelAndView retriveRecords()
+{  
+	ModelAndView m5=new ModelAndView("display");
+	return m5;
+} 
+@RequestMapping("/displayproduct")
+public ModelAndView retriveRecord()
+{  
+	ModelAndView m33=new ModelAndView("displayproduct");
+	return m33;
+} 
 
 }
 

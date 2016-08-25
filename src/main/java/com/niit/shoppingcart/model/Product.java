@@ -23,6 +23,7 @@ public class Product {
 private int id;
 private String name;
 private String description;
+private String warranty;
 private int price;
 @Column(name="image",columnDefinition="varchar(255)")
 @Size(min=3,message="please Select the image")
@@ -31,6 +32,12 @@ private String image;
 transient private MultipartFile img;
 public int getId() {
 	return id;
+}
+public String getWarranty() {
+	return warranty;
+}
+public void setWarranty(String warranty) {
+	this.warranty = warranty;
 }
 public void setId(int id) {
 	this.id = id;
