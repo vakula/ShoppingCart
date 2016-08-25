@@ -1,16 +1,10 @@
 package com.niit.controller;
-
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,163 +15,109 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.niit.shoppingcart.dao.LoginDAO;
-import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.RegisterDAO;
 import com.niit.shoppingcart.model.Login;
-import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Register;
 
-
-
-
 @Controller
-public class HomeController
-{
-@Autowired
-ProductDAO productDAO;
-private ProductDAO pd;
-@Autowired
-RegisterDAO rs;
-@Autowired
-LoginDAO ld;
-@RequestMapping("/")
-public ModelAndView display(){
-	ModelAndView m1=new ModelAndView("Home");
-	return m1;
-}
-@RequestMapping("/login")
-public ModelAndView display2(){
-	ModelAndView m2=new ModelAndView("login");
-	return m2;
-}
-@RequestMapping("/EditUser")
-public ModelAndView display7() {
-	ModelAndView m2 = new ModelAndView("EditUser");
-	return m2;
-}
-@RequestMapping("/RetrieveUser")
-public ModelAndView display8() {
-	ModelAndView m2 = new ModelAndView("RetrieveUser");
-	return m2;
-}
+	public class HomeController 
+	{
+	
+	@Autowired
+     LoginDAO lg;
+	@Autowired
+	RegisterDAO rs;
+	SessionFactory sessionFactory; 
+	@RequestMapping("/")
+	 public ModelAndView display()
+	 {
+	 ModelAndView m=new ModelAndView("home");
+	 return m;
+	 }
+	 @RequestMapping("login")
+	 public ModelAndView display1()
+	 {
+	 ModelAndView m1=new ModelAndView("login");
+	 return m1;
+	 }
+	 @RequestMapping("register")
+	 public ModelAndView display2()
+	 {
+	 ModelAndView m2=new ModelAndView("register");
+	 return m2;
+	 }
 
-@RequestMapping("/welcome")
-public ModelAndView display3() {
-	ModelAndView m9 = new ModelAndView("welcome");
-	return m9;
-}
-@RequestMapping("/register")
-public ModelAndView display5()
-{
-	ModelAndView m3=new ModelAndView("register");
-	return m3;
-}
-@RequestMapping("/viewuser")
-public ModelAndView display9() {
-	ModelAndView m9 = new ModelAndView("viewuser");
-	return m9;
-}
-@RequestMapping("/fail2login")
-public ModelAndView display4() {
-	ModelAndView m9 = new ModelAndView("fail2login");
-	return m9;
-}
-public ModelAndView display6()
-{
-	ModelAndView m4=new ModelAndView("addwatch");
-	return m4;
-}
+	 @RequestMapping("category")
+	 public ModelAndView display3()
+	 {
+	 ModelAndView m3=new ModelAndView("category");
+	 return m3;
+	 }
+	 @RequestMapping("about")
+	 public ModelAndView display4()
+	 {
+	 ModelAndView m4=new ModelAndView("about");
+	 return m4;
+	 }
+	 
+	
+	 @RequestMapping("hai")
+	 public String display7()
+	 {
+	 
+	 return "home";
+	 }
+	 @RequestMapping("hello")
+	 public String display11()
+	 {
+	 
+	 return "index";
+	 }
+	 @RequestMapping("back")
+	 public String display12()
+	 {
+	 
+	 return "back";
+	 }
+	
+	
+	
 
-
-
-@ModelAttribute("Product")
-public  Product addwatch()
-{
-	return new Product();
-}
-@RequestMapping("/hai")
-public String display10()
-{
-	return "Home";
-}
-@RequestMapping("/addproduct")
-public ModelAndView display11()
-{
-ModelAndView m5=new ModelAndView("addproduct");
-return m5;
-}
-@ModelAttribute("Product")
-   public Product createProduct()
-   {
-   	return new Product();
-   }
-@RequestMapping("/storeproduct")
-public String addChairs(HttpServletRequest request,@Valid @ModelAttribute("Product")Product product,BindingResult result)
-       {
-System.out.println("hello niit...........................");
-    	if(result.hasErrors())
-    	{
-    		return "addproduct";
-    	}
-    	String filename=product.getImage();
-    	product.setImage(filename);
-    	
-    	try{
-    		byte[] bytes=new byte[product.getImg().getInputStream().available()];
-    	
-    		product.getImg().getInputStream().read(bytes);
-    		BufferedInputStream buffer=new BufferedInputStream(product.getImg().getInputStream());
-    		MultipartFile file=product.getImg();
-    		String path=request.getServletContext().getRealPath("/")+"resources/images";
-    		File rootPath=new File(path);
-    		if(!rootPath.exists())
-    			rootPath.mkdirs();
-    		File store=new File(rootPath.getAbsolutePath()+"/"+filename);
-    		System.out.println("Image path :"+path);
-    		OutputStream os=new FileOutputStream(store);
-    		os.write(bytes);;
-    	}
-    	catch(Exception e){
-    		System.out.println(e.getMessage());
-    	}
-    	productDAO.saveOrUpdate(product);
-    	return "display";
-    	
-    }
-@RequestMapping(value="editproduct",method=RequestMethod.GET)
-public ModelAndView editproduct(@RequestParam int id){
- System.out.println("hello niit.........................niit1............");	
- Product product1=pd.get(id);
- System.out.println("hello niit.........................niit2............");
- System.out.println("eeee "+product1.getName());
-	return new ModelAndView("editproduct","Product",product1);
-}
 @ModelAttribute("Register")
-public Register createuser(){
-		return new Register();
+public Register createregister()
+{
+	return new Register();
 }
+	
+	
 
-@RequestMapping(value = "/storeuser", method = RequestMethod.POST)
-public String addUser(@Valid @ModelAttribute("Login")Login login,@Valid @ModelAttribute("Register")Register register,BindingResult result, Model model){
+@RequestMapping(value = "/storeUser", method = RequestMethod.POST)
+public String addUser(@Valid @ModelAttribute("Register")Register register,@Valid @ModelAttribute("Login")Login login ,BindingResult result,Model model)
+{
    	
-
-	System.out.println("hello storeUser");
-	System.out.println(register.getUsername()+ "hello @@@@@@");
-	rs.saveOrUpdate(register);
-	ld.save(login);
+	if(result.hasErrors()) {
+		
+		return "register";
+		
+	}
+	 rs.saveOrUpdate(register);
+	 login.setId(register.getId());
+	 login.setStatus(register.isStatus());
+	 lg.save(login);
+	 return "login";
 	
-	login.setId(register.getId());
-	login.setStatus(register.isStatus());
-	
-	return "Home";
    }
+@RequestMapping(value = "/fail2login", method = RequestMethod.GET)
+public ModelAndView loginerror(ModelMap model) {
+	System.out.println("hello ravi.....................");
+
+	return new ModelAndView("login", "error", true);
+
+}
 @RequestMapping(value = "/welcome", method = RequestMethod.GET)
 public ModelAndView checkUserOne(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 		throws Exception {
@@ -187,81 +127,19 @@ public ModelAndView checkUserOne(HttpServletRequest request, HttpServletResponse
 		String str = auth.getName(); // get logged in username
 		session = request.getSession(true);
 		session.setAttribute("loggedInUser", str);
-
 		// session.invalidate();
-		ModelAndView m1 = new ModelAndView("admin");
-		return m1;
+		ModelAndView m5 = new ModelAndView("admin");
+		return m5; 
 	}
 	else
 	{
-		ModelAndView m2 = new ModelAndView("Home");
-		return m2;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String str = auth.getName(); // get logged in username
+		session = request.getSession(true);
+		session.setAttribute("loggedInUser", str);
+		ModelAndView m6 = new ModelAndView("index");
+		return m6;
 	}
+}
+}
 	
-	
-}
-@RequestMapping(value = "/fail2login", method = RequestMethod.GET)
-public ModelAndView loginerror(ModelMap model) {
-	System.out.println("hello devi...........................................");
-
-	return new ModelAndView("Login", "error", true);
-
-}
-@RequestMapping(value="/updateUser",method=RequestMethod.POST)
-public ModelAndView updateuser(HttpServletRequest request, @Valid @ModelAttribute("Login")Login login)
-{
-	ld.Update(login);
-	return new ModelAndView("EditUser");
-}
- 
-
-
-@RequestMapping(value = "/list2", method = RequestMethod.GET, produces = "application/json")
-public @ResponseBody String showList2() {
-	List list = ld.list();
-	Gson u = new Gson();
-	String json = u.toJson(list);
-	return json;
-}
-@RequestMapping(value="EditUser", method=RequestMethod.GET)
-public ModelAndView edituser(@RequestParam int id){
- System.out.println("hello .........................vakula............");	
- Login u1=ld.get(id);
- System.out.println("hello.........................devi............");
- 
-	return new ModelAndView("EditUser","Login",u1);
-}
-
-@RequestMapping("/deleteUser")
-public ModelAndView deleteuser(@RequestParam int id)
-{
- System.out.println("hello");
-    ld.delete(id);
-    rs.delete(id);
-	ModelAndView model2=new ModelAndView("RetrieveUser");
-	return model2;
-}
-@RequestMapping("/delete")
-public ModelAndView deleteChair(@RequestParam int id)
-{
- System.out.println("hello welcome to niit");
-    pd.delete(id);
-	ModelAndView model=new ModelAndView("display");
-	return model;
-}
-@RequestMapping("/display")
-public ModelAndView retriveRecords()
-{  
-	ModelAndView m5=new ModelAndView("display");
-	return m5;
-} 
-@RequestMapping("/displayproduct")
-public ModelAndView retriveRecord()
-{  
-	ModelAndView m33=new ModelAndView("displayproduct");
-	return m33;
-} 
-
-}
-
-

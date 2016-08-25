@@ -11,7 +11,7 @@ public interface LoginDAO {
 		public Login get(int id);
 		
 		public void save(Login user);
-		public void Update(Login user);
+		public void update(Login user);
 		
 		public void delete(int string);
 		public List<Login> listUser();

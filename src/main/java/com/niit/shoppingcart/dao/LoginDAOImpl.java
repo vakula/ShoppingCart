@@ -54,7 +54,7 @@ public class LoginDAOImpl implements LoginDAO
 		
 	}
 @Transactional
-public void Update(Login user)
+public void update(Login user)
 {
 	// TODO Auto-generated method stub
 	sessionFactory.getCurrentSession().update(user);
