@@ -58,7 +58,7 @@
   </tr>
 </table>
 <sec:authorize access="hasRole('ROLE_ADMIN')">
-<a href="addproduct" class="btn btn-info">addproduct</a>
+<a href="AddProduct" class="btn btn-info">addproduct</a>
 </sec:authorize>
 
 </div>

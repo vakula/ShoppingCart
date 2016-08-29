@@ -11,22 +11,26 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <style type="text/css">
-.errorblock {
- color: #ff0000;
- background-color: #ffEEEE;
- border: 3px solid #ff0000;
- padding: 8px;
- margin: 16px;
-}
-.logoutblock {
- color: blue;
- background-color: lightgreen;
- border: 3px solid blue;
- padding: 8px;
- margin: 16px;
+ <style type="text/css">
+.errStyle {
+	color: red;
+	font-style: italic;
+	font-weight: bold;
 }
 </style>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header"></div>
+		<ul class="nav navbar-nav">
+		<li><a href="hai">Home</a></li>
+		<li class="active"><a href="display">Logout</a></li>
+		</ul>
+	</div>
+
+         
+</body>
 </head>
 <body>
 <div class="container">
@@ -53,7 +57,7 @@
   
   <button type="submit"  class="btn btn-default" >Submit</button>
 </form>
-<h4>Not A User ? <a href="Register">Sign Up Here</a></h4>
+<h4>Not A User ? <a href="register">Sign Up Here</a></h4>
 </div>
 </body>
 </html>

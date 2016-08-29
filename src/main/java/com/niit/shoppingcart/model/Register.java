@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="UserDetails")
+@Table(name="USERDETAILS")
 @Component
 public class Register {
 	@Id
@@ -49,6 +49,12 @@ public class Register {
 	private boolean Status=true;
 	public int getId() {
 		return id;
+	}
+	public boolean getStatus() {
+		return Status;
+	}
+	public void setStatus(boolean status) {
+		Status = status;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -90,12 +96,7 @@ public class Register {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	public boolean isStatus() {
-		return Status;
-	}
-	public void setStatus(boolean status) {
-		Status = status;
-	}
+
 	
 }
 

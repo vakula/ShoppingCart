@@ -73,7 +73,7 @@ public int deleteProduct(int id) {
 
 	
 }
-@Override
+@Transactional
 public List<Product> listProduct() {
 	// TODO Auto-generated method stub
 	return null;

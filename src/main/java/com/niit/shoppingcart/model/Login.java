@@ -18,8 +18,8 @@ public class Login {
 	
 	private String username;
 	private String password;
-	private double Mobile;
-	private String Role="ROLE_ADMIN";
+	private String Mobile;
+	private String Role="ROLE_USER";
 	private boolean Status;
 	@Id
 	public int getId() {
@@ -40,10 +40,10 @@ public class Login {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public double getMobile() {
+	public String getMobile() {
 		return Mobile;
 	}
-	public void setMobile(double mobile) {
+	public void setMobile(String mobile) {
 		Mobile = mobile;
 	}
 	public String getRole() {

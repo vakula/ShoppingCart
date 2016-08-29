@@ -28,6 +28,7 @@
 	<div class="container-fluid">
 		<div class="navbar-header"></div>
 		<ul class="nav navbar-nav">
+		<li><a href="hai">Home</a></li>
 			<li><a href="cont">Contact us</a></li>
 		</ul>
 	</div>

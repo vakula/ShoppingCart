@@ -28,15 +28,22 @@
 <h1>Hello... <%=session.getAttribute("loggedInUser")%></h1>
       <div class="container">
             <table class="table table-hover table-bordered">
-            <tr><td>${login.id}</td></tr>
-            <tr><td>${login.name}</td></tr>
-            <tr><td>${login.Role}</td></tr>
-            <tr><td>${login.Status}</td></tr>
-            
-            <sec:authorize access="hasRole('ROLE_USER')">
-            <tr><td></td><td><a href="viewcart?id=${login.id}" class="btn btn-primary">Add Cart</a>
-              </td></tr></sec:authorize>               
+            <tr><td rowspan="5">
+           
+             <img src='<x:url value="/resources/images/${Product.image}"/>'/></td></tr>
+            <tr><td>${Product.id}</td></tr>
+            <tr><td>${Product.name}</td></tr>
+            <tr><td>${Product.price}</td></tr>
+            <tr><td>${Product.description}</td></tr>
             </table>
+             <tr ng-repeat="x in names | filter:searchBy">
+    <td>{{x.id}}</td>
+    <td>{{x.name}}</td>
+    <td>{{x.description}}</td>
+    <td>{{x.price}}</td>
+    <td>
+             <a href="${pageContext.servletContext.contextPath}/viewproduct?id={{x.id}}"><span>View</span></a>
+             </td>
       </div>
    </body>
 </html>

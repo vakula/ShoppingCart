@@ -53,7 +53,8 @@
       <li class="active"><a href="hai">Home</a></li>
                  <li><a href="register">Register</a></li>
             <li><a href="login">Login</a></li>
-            <li><a href="addwatch">Add watch</a></li>
+            <li><a href="viewproduct">Products</a></li>
+           
      </ul>
   </div>
 </nav>

@@ -28,7 +28,7 @@
   </div>
 </nav>
     <div class="container" ng-app="imgApp" ng-controller="imgCtrl">
-    <c:url var="addproduct" value="addproduct"></c:url>
+    <c:url var="AddProduct" value="AddProduct"></c:url>
    <form:form commandName="Product" method="post" action="storeproduct" enctype="multipart/form-data">
        <table class="table table-bordered" >
       
@@ -57,6 +57,9 @@
                <td><form:input path="img" type="file"/>
                <font color="red"><form:errors path="img"></form:errors></font></td>
            </tr>
+            <tr><td></td>
+               <td><input type="submit" value="submit" class="btn"/></td>
+           </tr>   
        </table>
    </form:form> 
    
