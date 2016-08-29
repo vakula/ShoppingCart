@@ -193,6 +193,13 @@ public ModelAndView loginerror(ModelMap model) {
 	return new ModelAndView("login", "error", true);
 
 }
+@RequestMapping(value = "/logout", method = RequestMethod.GET)
+public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	System.out.println("Logging out current user.....................");
+	session.invalidate();
+	return new ModelAndView("hai");
+
+}
 @RequestMapping(value = "/welcome", method = RequestMethod.GET)
 public ModelAndView checkUserOne(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 		throws Exception {
@@ -224,10 +231,10 @@ public @ResponseBody String showList(){
 	String json=x.toJson(list);
 	return json;
 }
-@RequestMapping("viewproduct")
+@RequestMapping("listproducts")
 public ModelAndView retrieverecords()
 {
-ModelAndView m3=new ModelAndView("viewproduct");
+ModelAndView m3=new ModelAndView("display");
 return m3;
 }
 

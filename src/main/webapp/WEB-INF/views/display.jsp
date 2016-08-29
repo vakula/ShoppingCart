@@ -10,18 +10,7 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      
-    </div>
-    <ul class="nav navbar-nav">
-          <li><a href="hai">Home</a></li>
-          <li><a href="display">Manage Products</a></li>
-          <li><a href="">Logout</a></li>
-     </ul>
-  </div>
-</nav>
+<%@ include file="nav.jsp" %>
  <h1>Hello... <%=session.getAttribute("loggedInUser")%></h1>
     <div class="container">
         

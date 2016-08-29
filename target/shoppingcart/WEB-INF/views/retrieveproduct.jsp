@@ -13,22 +13,7 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      
-    </div>
-    <ul class="nav navbar-nav">
-          <li><a href="cont">Contact us</a></li>
-           <sec:authorize var="loggedIn" access="isAuthenticated()" />
-          <sec:authorize access="permitAll">
-          <li><a href="${pageContext.request.contextPath}/logout"><span>Logout</span></a></li>
-		  </sec:authorize> 
-          
-         <!-- <li><a href="j_spring_security_logout">Logout</a></li> -->        
-      </ul>
-  </div>
-</nav>
+<%@ include file="nav.jsp" %>
  <h1>Hello... <%=session.getAttribute("loggedInUser")%></h1>
     <div class="container">
         

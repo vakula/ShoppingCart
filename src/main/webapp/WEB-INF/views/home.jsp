@@ -44,20 +44,7 @@
 <body>
 
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="hai">Home</a></li>
-                 <li><a href="register">Register</a></li>
-            <li><a href="login">Login</a></li>
-            <li><a href="viewproduct">Products</a></li>
-           
-     </ul>
-  </div>
-</nav>
+<%@ include file="nav.jsp" %>
   
 
 <div class="container">

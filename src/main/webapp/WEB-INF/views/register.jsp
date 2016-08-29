@@ -24,16 +24,8 @@
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="navbar-header"></div>
-		<ul class="nav navbar-nav">
-		<li><a href="hai">Home</a></li>
-			<li><a href="cont">Contact us</a></li>
-		</ul>
-	</div>
+<%@ include file="nav.jsp" %>
 
-	</nav>
 	<div class="container">
 		<c:url var="register" value="register"></c:url>
 		<form:form commandName="Register" method="post" action="storeuser">

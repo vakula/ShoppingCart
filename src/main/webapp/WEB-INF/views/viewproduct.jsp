@@ -22,18 +22,7 @@
 </head>
 
    <body>
-   <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    </div>
-    <ul class="nav navbar-nav">
-    <li><a href="hai">Home</a></li>
-            <li><a href="cont">Contact us</a></li>
-      <li><a href="logout">Logout</a></li>
-      
-          </ul>
-  </div>
-</nav>
+<%@ include file="nav.jsp" %>
 <h1>Hello... <%=session.getAttribute("loggedInUser")%></h1>
       <div class="container">
             <table class="table table-hover table-bordered">
