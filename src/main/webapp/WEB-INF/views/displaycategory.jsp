@@ -9,46 +9,36 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
-<body>
 <%@ include file="nav.jsp" %>
-<% 
-	String userName = (String)session.getAttribute("loggedInUser"); 
-	if (userName == null)
-		userName = "";
-%>
- <h1>Hello... <%= userName%></h1>
+ <h1>Hello... <%=session.getAttribute("loggedInUser")%></h1>
     <div class="container">
         
 <div ng-app="myApp" ng-controller="customersCtrl">
 <input type="text" class="form-control" ng-model="searchBy.name"/>
 <table class="table table-hover table-bordered">
   <tr>
-       <th>Product id</th>
-       <th>Product name</th>
-       <th>Product price</th>
-       <th>Product description</th>
+       <th>Category id</th>
+       <th>Category name</th>
+       <th>Category description</th>
       
   </tr>
-  <tr ng-repeat="x in names | filter:searchBy">
-    <td>{{x.id}}</td>
-    <td>{{x.name}}</td>
-    <td>{{x.price}}</td>
-    <td>{{x.description}}</td>
+  <tr ng-repeat="c in names | filter:searchBy">
+    <td>{{c.id}}</td>
+    <td>{{c.name}}</td>
+    <td>{{c.description}}</td>
     <td>
-    <a href="${pageContext.servletContext.contextPath}/viewproduct?id={{x.id}}"><span>View</span></a>
-    <% if(session.getAttribute("userRole") == "ROLE_ADMIN") { %>
-    	<a href="${pageContext.servletContext.contextPath}/editproduct?id={{x.id}}"><span>| Edit |</span></a>
-    	<a href="${pageContext.servletContext.contextPath}/delete?id={{x.id}}"><span>Delete</span></a>
-    <% } %>
+    <a href="${pageContext.servletContext.contextPath}/viewcategory?id={{c.id}}"><span>View</span></a>
+    <a href="${pageContext.servletContext.contextPath}/editcategory?id={{c.id}}"><span>| Edit |</span></a>
+    <a href="${pageContext.servletContext.contextPath}/deletecategory?id={{c.id}}"><span>Delete</span></a>
    </td>  
   </tr>
 </table>
-<a href="AddProduct" class="btn btn-info">Add Product</a>
+<a href="AddCategory" class="btn btn-info">Add Category</a>
 </div>
 <script>
 var app = angular.module('myApp', []);
 app.controller('customersCtrl', function($scope, $http) {
-    $http.get("list")
+    $http.get("list1")
     .then(function (response) {$scope.names = response.data;});
 });
 </script>

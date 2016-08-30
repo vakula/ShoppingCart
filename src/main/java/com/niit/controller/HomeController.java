@@ -193,14 +193,15 @@ public ModelAndView loginerror(ModelMap model) {
 	return new ModelAndView("login", "error", true);
 
 }
-@RequestMapping(value = "/logout", method = RequestMethod.GET)
+
+@RequestMapping(value = "/logoutsuccess", method = RequestMethod.GET)
 public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	System.out.println("Logging out current user.....................");
 	session.invalidate();
-	return new ModelAndView("hai");
-
+	return new ModelAndView("logoutsuccess");
 }
-@RequestMapping(value = "/welcome", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 public ModelAndView checkUserOne(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 		throws Exception {
 	System.out.println("in homecontroller checkUserOne function");

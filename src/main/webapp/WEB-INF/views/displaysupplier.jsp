@@ -1,9 +1,6 @@
 <%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-
 <html>
 <head>
   <link rel="stylesheet" href='<x:url value="/resources/css/bootstrap.min.css"></x:url>' />
@@ -12,52 +9,39 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
-<body>
 <%@ include file="nav.jsp" %>
  <h1>Hello... <%=session.getAttribute("loggedInUser")%></h1>
     <div class="container">
         
 <div ng-app="myApp" ng-controller="customersCtrl">
-<input type="text" class="form-control" ng-model="searchBy.watchName"/>
+<input type="text" class="form-control" ng-model="searchBy.name"/>
 <table class="table table-hover table-bordered">
   <tr>
-       <th>Product Id</th>
-       <th>Product Name</th>
-       <th>Product Description</th>
-       <th>Product price</th>
+       <th>Supplier id</th>
+       <th>Supplier name</th>
+       <th>Supplier address</th>
       
   </tr>
-  <tr ng-repeat="x in names | filter:searchBy">
-    <td>{{x.id}}</td>
-    <td>{{x.name}}</td>
-    <td>{{x.description}}</td>
-    <td>{{x.price}}</td>
+  <tr ng-repeat="s in names | filter:searchBy">
+    <td>{{s.id}}</td>
+    <td>{{s.name}}</td>
+    <td>{{s.address}}</td>
     <td>
-    
-    <a href="${pageContext.servletContext.contextPath}/viewproduct?id={{x.id}}"><span>View</span></a>
-    
-    <a href="${pageContext.servletContext.contextPath}/editproduct?id={{x.id}}"><span>| Edit |</span></a>
-    <a href="${pageContext.servletContext.contextPath}/delete?id={{x.id}}"><span>Delete</span></a>
-   
+    <a href="${pageContext.servletContext.contextPath}/viewsupplier?id={{s.id}}"><span>View</span></a>
+    <a href="${pageContext.servletContext.contextPath}/editsupplier?id={{s.id}}"><span>| Edit |</span></a>
+    <a href="${pageContext.servletContext.contextPath}/deletesupplier?id={{s.id}}"><span>Delete</span></a>
    </td>  
   </tr>
 </table>
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-<a href="AddProduct" class="btn btn-info">addproduct</a>
-</sec:authorize>
-
+<a href="AddSupplier" class="btn btn-info">Add Supplier</a>
 </div>
-
 <script>
 var app = angular.module('myApp', []);
 app.controller('customersCtrl', function($scope, $http) {
-    $http.get("list")
+    $http.get("list2")
     .then(function (response) {$scope.names = response.data;});
 });
 </script>
 </div>
 </body>
 </html>
-
-
-
