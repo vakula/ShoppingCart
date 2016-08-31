@@ -37,37 +37,41 @@ import com.niit.shoppingcart.model.Register;
 
 @Controller
 public class HomeController {
+	
 	@Autowired
 	ProductDAO pd;
+	
 	@Autowired
 	LoginDAO lg;
+
 	@Autowired
 	RegisterDAO rs;
-	SessionFactory sessionFactory;
 
+	private ModelAndView model;
+	
 	@RequestMapping("/")
 	public ModelAndView display(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		session.setAttribute("loggedInUser", "");
-		ModelAndView m = new ModelAndView("home");
-		return m;
+		model = new ModelAndView("home");
+		return model;
 	}
 
 	@RequestMapping("login")
 	public ModelAndView display1() {
-		ModelAndView m1 = new ModelAndView("login");
-		return m1;
+		model = new ModelAndView("login");
+		return model;
 	}
 
 	@RequestMapping("register")
 	public ModelAndView display2() {
-		ModelAndView m2 = new ModelAndView("register");
-		return m2;
+		model = new ModelAndView("register");
+		return model;
 	}
 
 	@RequestMapping("AddProduct")
 	public ModelAndView display4() {
-		ModelAndView m4 = new ModelAndView("AddProduct");
-		return m4;
+		model = new ModelAndView("AddProduct");
+		return model;
 	}
 
 	@ModelAttribute("Product")
@@ -83,14 +87,14 @@ public class HomeController {
 
 	@RequestMapping("category")
 	public ModelAndView display3() {
-		ModelAndView m3 = new ModelAndView("category");
-		return m3;
+		model = new ModelAndView("category");
+		return model;
 	}
 
 	@RequestMapping("display")
 	public ModelAndView display8() {
-		ModelAndView m3 = new ModelAndView("display");
-		return m3;
+		model = new ModelAndView("display");
+		return model;
 	}
 
 	@RequestMapping("hello")
@@ -120,7 +124,7 @@ public class HomeController {
 		System.out.println(product);
 		String filename = product.getImg().getOriginalFilename();
 		// product.getImg().getOriginalFilename();
-		System.out.println("Shanth..........." + filename);
+		System.out.println("file name: " + filename);
 		product.setImage(filename);
 
 		try {
@@ -158,33 +162,10 @@ public class HomeController {
 		return new Register();
 	}
 
-	@RequestMapping(value = "/storeuser", method = RequestMethod.POST)
-	public String addUser(@Valid @ModelAttribute("Register") Register register, BindingResult result) {
-
-		Login login = new Login();
-		rs.saveOrUpdate(register);
-		login.setId(register.getId());
-		login.setStatus(register.getStatus());
-		login.setUsername(register.getUsername());
-		login.setPassword(register.getPassword());
-		login.setMobile(register.getMobile());
-		lg.save(login);
-		return "home";
-
-	}
-
-	@RequestMapping("retriveproduct")
-	public ModelAndView retriveRecords() {
-		ModelAndView m1 = new ModelAndView("retriveproduct");
-		return m1;
-	}
-
 	@RequestMapping(value = "/fail2login", method = RequestMethod.GET)
 	public ModelAndView loginerror(ModelMap model) {
 		System.out.println("hello devi.....................");
-
 		return new ModelAndView("login", "error", true);
-
 	}
 
 	@RequestMapping(value = "/logoutsuccess", method = RequestMethod.GET)
@@ -206,13 +187,12 @@ public class HomeController {
 		if (request.isUserInRole("ROLE_ADMIN")) {
 			session.setAttribute("userRole", "ROLE_ADMIN");
 			// session.invalidate();
-			ModelAndView m5 = new ModelAndView("admin");
-			return m5;
+			model = new ModelAndView("admin");
+			return model;
 		} else {
-
-			ModelAndView m = new ModelAndView("home");
+			model = new ModelAndView("home");
 			session.setAttribute("userRole", "ROLE_USER");
-			return m;
+			return model;
 		}
 	}
 
@@ -226,21 +206,20 @@ public class HomeController {
 
 	@RequestMapping("listproducts")
 	public ModelAndView retrieverecords() {
-		ModelAndView m3 = new ModelAndView("display");
-		return m3;
+		model = new ModelAndView("display");
+		return model;
 	}
 
 	@RequestMapping(value = "viewproduct", method = RequestMethod.GET)
 	public ModelAndView viewproduct(@RequestParam int id, @ModelAttribute Product products) {
 		Product product = pd.get(id);
 		return new ModelAndView("viewproduct", "Product", product);
-
 	}
 
 	@RequestMapping("editproduct")
 	public ModelAndView display5() {
-		ModelAndView m6 = new ModelAndView("editproduct");
-		return m6;
+		model = new ModelAndView("editproduct");
+		return model;
 	}
 
 	@RequestMapping(value = "editproduct", method = RequestMethod.GET)
@@ -285,7 +264,7 @@ public class HomeController {
 	public ModelAndView deleteProduct(@RequestParam int id) {
 		System.out.println("hello welcome to niit");
 		pd.deleteProduct(id);
-		ModelAndView model = new ModelAndView("retriveproduct");
+		model = new ModelAndView("retriveproduct");
 		return model;
 	}
 }
