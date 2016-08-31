@@ -27,7 +27,7 @@
       <div class="container">
             <table class="table table-hover table-bordered">
             <tr><td rowspan="5">
-            <img src='<x:url value="/resources/images/${Product.image}"/>'/></td></tr>
+            <img src="resources/images/${Product.image}"></td></tr>
             <tr><td>${Product.id}</td></tr>
             <tr><td>${Product.name}</td></tr>
             <tr><td>${Product.price}</td></tr>

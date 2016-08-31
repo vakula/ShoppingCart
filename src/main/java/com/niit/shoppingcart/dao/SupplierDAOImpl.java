@@ -15,13 +15,7 @@ import com.niit.shoppingcart.model.Supplier;
 @Repository("supplierDAO")
 public class SupplierDAOImpl implements SupplierDAO  {
 
-	public List<Supplier> list() {
-		
-		
-		return null;
-	}
 	@Autowired
-
 	private SessionFactory sessionFactory;
 
 	public SupplierDAOImpl(SessionFactory sessionFactory) {

@@ -20,16 +20,7 @@
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="navbar-header"></div>
-		<ul class="nav navbar-nav">
-		<li><a href="hai">Home</a></li>
-			  <li class="active"><a href="display">Manage Products</a></li>
-			    <li class="active"><a href="display">Logout</a></li>
-		</ul>
-	</div>
-
+	<%@ include file="nav.jsp" %>
          
 </body>
 </html>

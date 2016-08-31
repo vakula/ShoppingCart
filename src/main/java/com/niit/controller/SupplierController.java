@@ -55,7 +55,7 @@ public ModelAndView edit2()
 } 
 @RequestMapping(value="/list2",method=RequestMethod.GET,produces="application/json")
 public @ResponseBody String showList2(){
-	List<Supplier> list=sd.list();
+	List<Supplier> list=sd.listSupplier();
 	Gson s=new Gson();
 	String json=s.toJson(list);
 	return json;
